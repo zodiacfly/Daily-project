@@ -6,4 +6,4 @@ I will start this project called daily-project which I will try my best to do a 
 let's see how will go!
 
 
-<h3><a href="https://zodiacfly.github.io/Daily-project/naviTab/index.html">navigationBar</a></h3>
+<h3><a href="https://zodiacfly.github.io/Daily-project/naviTab/index.html">navigationBar</a></h3><p>    28/01/2019</p>

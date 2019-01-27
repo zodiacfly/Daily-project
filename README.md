@@ -4,5 +4,4 @@ I have been self-learning front-end web developing since sep/2018, and so far so
 I will start this project called daily-project which I will try my best to do a project every day. whatever it is a big or small one, cause I think this will help me to improve and prevent to forget old stuff when I learn the new thing.
 
 let's see how will go!
-<p>28/01/2019</p>
-<h3><a href="https://zodiacfly.github.io/Daily-project/naviTab/index.html">navigationBar</a></h3>
+<h3><a href="https://zodiacfly.github.io/Daily-project/naviTab/index.html">1.navigationBar</a></h3>

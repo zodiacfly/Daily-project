@@ -3,7 +3,7 @@
 <head>
 	<title>Navigation Bar</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/script.js"></script>
+	
 </head>
 <body>
 	<div class="box">
@@ -26,5 +26,27 @@
 			</ul>
 		</div>
 	</div>
+	
+	var box = document.getElementsByClassName("box")[0];
+	var top = document.getElementsByClassName("top")[0];
+	var body = document.getElementsByClassName("body")[0];
+	var topList = top.getElementsByTagName("li");
+	var bodyList = body.getElementsByTagName("li");
+
+	for (var i = 0; i < topList.length; i++) {
+		topList[i].setAttribute('index',i)
+		topList[i].onmouseover = function(){
+			for (var j = 0; j < topList.length; j++) {
+				topList[j].removeAttribute('class')
+			}
+			this.className = 'current-li';
+			var num = this.getAttribute('index');
+			for (var k = 0; k < bodyList.length; k++) {
+				bodyList[k].removeAttribute('class')
+			}
+			bodyList[num].className = 'current';
+		}
+	}
+}
 </body>
 </html>

@@ -16,7 +16,8 @@ function naviTabBar() {
 	var body = document.getElementsByClassName("body")[0];
 	var topList = top1.getElementsByTagName("li");
 	var bodyList = body.getElementsByTagName("li");
-
+	var num = null;
+	
 	for (var i = 0; i < topList.length; i++) {
 		topList[i].setAttribute('index',i)
 		topList[i].onmouseover = function(){
@@ -24,7 +25,7 @@ function naviTabBar() {
 				topList[j].removeAttribute('class')
 			}
 			this.className = 'current-li';
-			var num = this.getAttribute('index');
+			num = this.getAttribute('index');
 			for (var k = 0; k < bodyList.length; k++) {
 				bodyList[k].removeAttribute('class')
 			}

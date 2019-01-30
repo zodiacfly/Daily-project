@@ -17,20 +17,22 @@ function naviTabBar() {
 	var topList = top1.getElementsByTagName("li");
 	var bodyList = body.getElementsByTagName("li");
 	var num = null;
+
+	function tabMouseOverEvent(){
+		for (var j = 0; j < topList.length; j++) {
+			topList[j].removeAttribute('class')
+		}
+		this.className = 'current-li';
+		num = this.getAttribute('index');
+		for (var k = 0; k < bodyList.length; k++) {
+			bodyList[k].removeAttribute('class')
+		}
+		bodyList[num].className = 'current';
+	}
 	
 	for (var i = 0; i < topList.length; i++) {
 		topList[i].setAttribute('index',i)
-		topList[i].onmouseover = function(){
-			for (var j = 0; j < topList.length; j++) {
-				topList[j].removeAttribute('class')
-			}
-			this.className = 'current-li';
-			num = this.getAttribute('index');
-			for (var k = 0; k < bodyList.length; k++) {
-				bodyList[k].removeAttribute('class')
-			}
-			bodyList[num].className = 'current';
-		}
+		topList[i].onmouseover = tabMouseOverEvent;
 	}
 }
 

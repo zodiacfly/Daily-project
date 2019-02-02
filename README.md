@@ -8,3 +8,4 @@ let's see how will go!
 <h3><a href="https://zodiacfly.github.io/Daily-project/checkbox/index.html">2.checkbox--selectAll</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/html5form/index.html">3.HTML5--Form</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/previewImg/index.html">4.preview upload image</a></h3>
+<h3><a href="https://zodiacfly.github.io/Daily-project/dragToTheBox/index.html">5.drag to the box</a></h3>

@@ -11,6 +11,7 @@ function addLoadEvent(func){
 }
 
 function customiseVideoPlayer(){
+
 	var box = document.querySelector('.box');
 	var videoObj = document.querySelector('video');
 	var switchObj = document.querySelector('.switch');
@@ -38,7 +39,7 @@ function customiseVideoPlayer(){
 		return hour+':'+minute+':'+second;
 	}
 
-		//script for switch on/off----------------------------------
+		//script for play/pause----------------------------------
 		switchObj.onclick = function(){
 			if (videoObj.paused){
 				videoObj.play();
@@ -64,23 +65,21 @@ function customiseVideoPlayer(){
 				videoObj.msRequestFullScreen();
 			}
 		}
-
-
+		// work out the total duration of video-----------------------
 		videoObj.oncanplay = function(){
-			this.style.display = 'block';
 			var total = videoObj.duration;
 			var result = getTime(total);
 			totalTime.innerHTML = result;
-
 		}
-
+		//work out the current time by ontimeupdate event -----------------
 		videoObj.ontimeupdate = function(){
 			var current = videoObj.currentTime;
 			var result = getTime(current);
 			currentMomentTime.innerHTML = result;
-
+		//work out the progress bar------------------------------------
 			var percent = current/videoObj.duration*100+'%';
 			elapsed.style.width = percent;
+		//still have bug with buffered porgress bar, unable to fix the problem atm, will fix in the futrue!!
 			var buffered = this.buffered.end(0)/videoObj.duration*100+'%';
 			loaded.style.width = buffered;
 		}
@@ -90,6 +89,7 @@ function customiseVideoPlayer(){
 			switchObj.innerHTML = '>';
 		}
 
+		//use 'e.offsetX' attr to find out current place by mouse clicking--------------
 		bar.onclick = function(e){
 			var width = parseInt(getStyle(this,'width'));
 			var percent = e.offsetX/width;

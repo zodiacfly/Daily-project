@@ -29,7 +29,6 @@ function customiseVideoPlayer(){
 	}
 
 	function getTime(time){
-		var total = videoObj.duration;
 		var hour = Math.floor(time/3600);
 		var minute = Math.floor(time%3600/60);
 		var second = Math.floor(time%60);

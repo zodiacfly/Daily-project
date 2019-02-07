@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock</title>
+	<style id="style">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		list-style: none;
+		display: block;
+	}
+	.box {
+		width: 200px;
+		height: 200px;
+		border: 6px solid #a78e44;
+		margin: 50px auto;
+		border-radius: 50%;
+		position: relative;
+	}
+
+	.box > div {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+	.hour {
+		width: 6px;
+		height: 40px;
+		background-color: #f20c00;		
+		transform-origin: bottom;
+	}
+
+	.minute {
+		width: 4px;
+		height: 60px;
+		background-color: #f20c00;
+		transform-origin: bottom;
+		
+	}
+
+	.second {
+		width: 2px;
+		height: 80px;
+		background-color: #a78e44;
+		transform-origin: bottom;
+		
+	}
+
+	.center {
+		width: 8px;
+		height: 8px;
+		background-color: #a78e44;
+		border-radius: 4px;
+		transform: translate(-50%,-50%);
+	}
+
+	ul > li {
+		width: 4px;
+		height: 4px;
+		background-color: #a88462;
+		border-radius: 50%;
+		position: absolute;
+		top: 8px;
+		left: 50%;
+		transform-origin: center 96px;
+	}
+
+	ul > li:nth-of-type(5n+1) {
+		border-radius: 0;
+		background-color: #f20c00;
+		width: 3px;
+		height: 10px;
+		top: 12px;
+		transform-origin: center 98px;
+	}
+</style>
+<script type="text/javascript" src="js/common.js"></script>
+</head>	
+<body>
+	<div class="box">
+		<div class="hour"></div>
+		<div class="minute"></div>
+		<div class="second"></div>
+		<div class="center"></div>
+		<ul></ul>
+	</div>
+</body>
+</html>

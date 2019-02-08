@@ -15,4 +15,5 @@ let's see how will go!
 <h3><a href="https://zodiacfly.github.io/Daily-project/css3Menu/index.html">9.css3 side-menu</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/css3Pinwheel/index.html">10.css3 pinwheel</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/css3RotatingSquare/index.html">11.css3 rotating square</a></h3>
+<h3><a href="https://zodiacfly.github.io/Daily-project/clock/index.html">12.clock</a></h3>
 

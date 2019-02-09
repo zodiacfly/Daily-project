@@ -35,6 +35,7 @@ a {
 	font-size: 40px;
 	position: absolute;
 	transform: translate3d(0,-50%,300px);
+	user-select: none;
 	cursor: pointer;
 }
 

@@ -3,12 +3,12 @@
 	padding: 0;
 }
 div:nth-of-type(-n+3)	{
-	width: 200px;
+	width: 20%;
 	height: 100px;
 	border-radius: 10px;
 	border: 1px dashed #e4c6d0;
 	float: left;
-	margin: 100px 80px;
+	margin: 100px 20px;
 	text-align: center;
 	line-height: 100px;
 	cursor: pointer;
@@ -16,8 +16,9 @@ div:nth-of-type(-n+3)	{
 	box-sizing: border-box;
 }
 
+
 div:last-of-type {
-	width: 200px;
+	width: 20%;
 	height: 100px;
 	border-radius: 10px;
 	position: absolute;

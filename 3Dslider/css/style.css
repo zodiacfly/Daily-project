@@ -1,0 +1,82 @@
+
+.box {
+	width: 600px;
+	height: 400px;
+	margin: 100px auto;
+	position: relative;
+	transform-style: preserve-3d;
+}
+
+.box > div {
+	width: 20%;
+	height: 100%;
+	float: left;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: transform 1s;
+}
+
+span {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+}
+
+a {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: rgba(0,0,0,.5);
+	color: #fff;
+	font-size: 40px;
+	position: absolute;
+	transform: translate3d(0,-50%,300px);
+	cursor: pointer;
+}
+
+a.left {
+	left: 0;
+	top: 50%;
+}
+
+a.right {
+	right: 0;
+	top: 50%;
+}
+
+.box > div > span:nth-of-type(1) {
+	background: url(../images/kobe2.jpg);
+	transform: translateZ(200px);
+}
+.box > div > span:nth-of-type(2) {
+
+	background: url(../images/kobe6.jpg);
+	transform: translateZ(-200px) rotateX(180deg);
+}
+.box > div > span:nth-of-type(3) {
+
+	background: url(../images/kobe8.jpg);
+	transform: translateY(200px) rotateX(-90deg);
+}
+.box > div > span:nth-of-type(4) {
+
+	background: url(../images/kobe5.jpg);
+	transform: translateY(-200px) rotateX(90deg);
+}
+
+.box > div:nth-of-type(2) > span {
+	background-position: -100% 0;
+}
+.box > div:nth-of-type(3) > span {
+	background-position: -200% 0;
+}
+.box > div:nth-of-type(4) > span {
+	background-position: -300% 0;
+}
+.box > div:nth-of-type(5) > span {
+	background-position: -400% 0;
+}

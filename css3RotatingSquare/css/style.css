@@ -9,7 +9,6 @@
 	margin: 150px auto;
 	position: relative;
 	transform-style: preserve-3d;
-	transform: rotate3d(1,1,0,-30deg);
 	animation: movesquare 3s linear infinite;
 }
 
@@ -24,11 +23,11 @@
 
 @keyframes movesquare {
 	from { 
-		transform: rotate3d(1,1,1,30deg);
+		transform: rotate3d(1,1,1,0deg);
 	}
 	
 	to {
-		transform: rotate3d(1,1,1,390deg);
+		transform: rotate3d(1,1,1,360deg);
 	}
 }
 

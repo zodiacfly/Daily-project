@@ -21,7 +21,7 @@ function setClockEvent(){
 
 	for (var i = 0; i < 60; i++) {
 		liObj += '<li></li>';
-		style.innerHTML += 'ul > li:nth-of-type(' + (i+1) + ') {transform: translate(-50%,-100%) rotate(' + i*6 + 'deg);}'
+		style.innerHTML += 'ul > li:nth-of-type(' + (i+1) + ') {transform: translate(-50%,0) rotate(' + i*6 + 'deg);}';
 	}
 	ulObj.innerHTML = liObj;
 

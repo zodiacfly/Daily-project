@@ -28,7 +28,7 @@ function set3dSliderEvent(){
 			}
 			setTimeout(function(){
 				flag = true;
-			},1000);
+			},1500);
 		}
 	}
 
@@ -42,7 +42,7 @@ function set3dSliderEvent(){
 			}
 			setTimeout(function(){
 				flag = true;
-			},1000);
+			},1500);
 		}
 	}
 

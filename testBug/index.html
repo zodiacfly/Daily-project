@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test but</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0">
+	<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	html, body {
+		height: 100%;
+		width: 100%;
+	}
+	div, input, li, a {
+		box-sizing: border-box;
+		list-style: none;
+		text-decoration: none;
+	}
+
+	.box {
+		margin: 0 auto;
+		width: 100%;
+		height: 100%;
+		max-width: 640px;
+		min-width: 320px;
+		background-color: pink;
+	}
+
+	.sidemenu {
+		width: 100px;
+		height: 100%;
+		background-color: pink;
+		float: left;
+		overflow: hidden;
+		position: relative;
+		background-color: blue;
+	}
+	ul {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	li {
+		width: 100%;
+		height: 80px;
+		text-align: center;
+		line-height: 80px;
+		background-color: #666;
+		border-bottom: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+	}
+	.current {
+		background-color: #fff;
+		color: red;
+	}
+
+</style>
+</head>
+<body>
+	<div class="box">
+		<div class="sidemenu">
+			<ul>
+				<li class="current">menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+				<li>menu</li>
+
+			</ul>
+
+		</div>
+
+	</div>
+	<script type="text/javascript">
+function setSideMenuTouchMove(){
+
+	var sidemenu = document.querySelector('.sidemenu');
+	var ulObj = sidemenu.querySelector('ul');
+	var list = ulObj.querySelectorAll('li');
+	var startY, moveY, distanceY;
+	var currentY = 0;
+	var maxTop = 0;
+	var minTop = sidemenu.offsetHeight - ulObj.offsetHeight;
+	var maxBounceTop = maxTop + 100;
+	var minBounceTop = minTop - 100;
+	console.log(ulObj)
+	ulObj.addEventListener('touchstart',function(e){
+		startY = e.targetTouches[0].clientY;
+				// console.log(startY+'------startY')
+			})
+
+	ulObj.addEventListener('touchmove',function(e){
+		moveY = e.targetTouches[0].clientY;
+		distanceY = moveY - startY;
+		if(distanceY+currentY > maxBounceTop || distanceY+currentY < minBounceTop){
+			return;
+		}
+
+		ulObj.style.top = (distanceY+currentY)+'px';
+		ulObj.style.transition = 'none';
+				// console.log(distanceY+'------distanceY')
+			})
+
+	ulObj.addEventListener('touchend',function(){
+
+
+		if(distanceY+currentY > maxTop){
+			currentY = maxTop;
+			ulObj.style.top = maxTop + 'px';
+			ulObj.style.transition = 'top 0.5s';
+		} else if(distanceY+currentY < minTop) {
+			currentY = minTop;
+			ulObj.style.top = minTop + 'px';
+			ulObj.style.transition = 'top 0.5s';
+		} else {
+			currentY += distanceY;
+		}		
+	})
+
+	tapEvent.tap(ulObj,function(e){
+		for (var i = 0; i < list.length; i++) {
+			list[i].classList.remove('current');
+		}
+		e.target.classList.add('current');
+	})
+}
+
+var tapEvent = {
+	tap:function(ele,callback){
+		if(!ele || typeof ele != 'object'){
+			return;
+		}
+
+		var startTime, finishTime, startX, startY1, endX, endY;
+
+		ele.addEventListener('touchstart',function(e){
+			if(e.targetTouches.length > 1){
+				return;
+			}
+			startTime = Date.now();
+			startX = e.targetTouches[0].clientX;
+			startY1 = e.targetTouches[0].clientY;
+		})
+
+		ele.addEventListener('touchend',function(e){
+
+			if(e.changedTouches.length > 1){
+				return;
+			}
+			if(Date.now() - startTime > 150){
+				return;
+			}
+			endX = e.changedTouches[0].clientX;
+			endY = e.changedTouches[0].clientY;
+			if(Math.abs(endX - startX) < 5 && Math.abs(endY - startY1) < 5){
+				callback && callback(e);
+			}
+		})
+
+	}
+}
+
+setSideMenuTouchMove();
+</script>
+</body>
+</html>

@@ -91,7 +91,9 @@ function setSideMenuTouchMove(){
 	var sidemenu = document.querySelector('.sidemenu');
 	var ulObj = sidemenu.querySelector('ul');
 	var list = ulObj.querySelectorAll('li');
-	var startY, moveY, distanceY;
+	var startY;
+	var moveY =0;
+        var distanceY = 0;
 	var currentY = 0;
 	var maxTop = 0;
 	var minTop = sidemenu.offsetHeight - ulObj.offsetHeight;

@@ -25,3 +25,4 @@ let's see how will go!
 <h3><a href="https://zodiacfly.github.io/Daily-project/iscrollPractice/index.html">19.iscroll practice</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/@mediaScreen/index.html">20.css @mdeia practice</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/closeAdvertising/index.html">21.close advertising</a></h3>
+<h3><a href="https://zodiacfly.github.io/Daily-project/accordion/index.html">22.accordion-kobe</a></h3>

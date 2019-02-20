@@ -125,12 +125,12 @@ function setSlider(){
 	})
 
 	ulObj.addEventListener('webkitTransitionEnd',function(){
-		//move to the last img once transition finish  
+		//move to the img[1] once transition finish  
 		if(index == count-1){
 			index = 1;
 			this.style.left = -index*imgWidth+'px';
 			this.style.transition = 'none';
-			//move to the first img once transition finish  
+			//move to the img[img.length-2] once transition finish  
 		} else if(index == 0){
 			index = count-2;
 			this.style.left = -index*imgWidth+'px';

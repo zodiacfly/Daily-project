@@ -1,0 +1,89 @@
+.box {
+  width: 400px;
+  height: 400px;
+  margin: 50px auto;
+  border: 5px solid red;
+  position: relative;
+}
+.box > ul {
+  list-style: none;
+}
+.box > ul > li {
+  position: absolute;
+}
+.box > ul > li:nth-of-type(1) {
+  border-width: 30px;
+  border-color: transparent transparent red transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.box > ul > li:nth-of-type(1):hover {
+  border-width: 80px;
+  border-color: transparent transparent orange transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+.box > ul > li:nth-of-type(2) {
+  border-width: 30px;
+  border-color: blue transparent transparent transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.box > ul > li:nth-of-type(2):hover {
+  border-width: 80px;
+  border-color: grey transparent transparent transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+.box > ul > li:nth-of-type(3) {
+  border-width: 30px;
+  border-color: transparent green transparent transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.box > ul > li:nth-of-type(3):hover {
+  border-width: 50px;
+  border-color: transparent purple transparent transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+.box > ul > li:nth-of-type(4) {
+  border-width: 30px;
+  border-color: transparent transparent transparent yellow;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.box > ul > li:nth-of-type(4):hover {
+  border-width: 70px;
+  border-color: transparent transparent transparent #000;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}

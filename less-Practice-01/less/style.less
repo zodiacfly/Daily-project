@@ -1,0 +1,76 @@
+.triangle(top;@width;@color){
+	border-width: @width;
+	border-color: transparent transparent @color transparent;
+	border-style: solid;
+}
+.triangle(bottom;@width;@color){
+	border-width: @width;
+	border-color: @color transparent transparent transparent;
+	border-style: solid;
+}
+.triangle(left;@width;@color){
+	border-width: @width;
+	border-color: transparent @color transparent transparent;
+	border-style: solid;
+}
+.triangle(right;@width;@color){
+	border-width: @width;
+	border-color: transparent transparent transparent @color;
+	border-style: solid;
+}
+.triangle(@_;@width;@color){
+	width: 0;
+	height: 0;
+	cursor: pointer;
+}
+
+
+.box {
+	width: 400px;
+	height: 400px;
+	margin: 50px auto;
+	border: 5px solid red;
+	position: relative;
+	> ul {
+		list-style: none;
+		> li {
+			position: absolute;
+			&:nth-of-type(1) {
+				.triangle(top;30px;red);
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				&:hover {
+					.triangle(top;80px;orange);
+				}
+			}
+			&:nth-of-type(2) {
+				.triangle(bottom;30px;blue);
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				&:hover {
+					.triangle(bottom;80px;grey)
+				}
+			}
+			&:nth-of-type(3) {
+				.triangle(left;30px;green);
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				&:hover {
+					.triangle(left;50px;purple);
+				}
+			}
+			&:nth-of-type(4) {
+				.triangle(right;30px;yellow);
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				&:hover {
+					.triangle(right;70px;#000);
+				}
+			}
+		}
+	}
+}

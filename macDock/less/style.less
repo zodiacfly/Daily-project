@@ -1,0 +1,28 @@
+.translate(@x:0;@y:0){
+	transform: translate(@x,@y);
+	-ms-transform: translate(@x,@y);
+	-moz-transform: translate(@x,@y);
+	-webkit-transform: translate(@x,@y);
+	-o-transform: translate(@x,@y)
+
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.wrap {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	.translate(@x:-50%);
+	> img {
+		width: 64px;
+		margin-left: 20px;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas practice</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0">
+	<style type="text/css">
+		
+		
+		canvas {
+			border: 1px solid #999;
+
+		}
+		
+	</style>
+</head>
+<body>
+	<canvas width="600" height="400"></canvas>
+	<script type="text/javascript">
+
+		var LineChart = function(ctx){
+			 this.ctx = ctx || document.querySelector('canvas').getContext('2d');
+			 this.canvasHeight = this.ctx.canvas.height;
+			 this.canvasWidth = this. ctx.canvas.width;
+			 this.grid = 10;
+			 this.axisSpace = 20;
+			 this.axisArrow= 10;
+			 this.dotSize = 6;
+			 this.orginX = this.axisSpace;
+			 this.orginY = this.canvasHeight - this.axisSpace;
+			 this.lineXTotal = Math.floor(this.canvasHeight/this.grid);
+			 this.lineYTotal = Math.floor(this.canvasWidth/this.grid);
+
+		}
+
+		LineChart.prototype.init = function(data){
+				
+			this.drawGrid();
+			this.drawAxis();
+			this.drawDots(data);
+		}
+		LineChart.prototype.drawGrid = function(){
+			//set horizontal grid line ---------------------------------------------------
+			for (var i = 0; i < this.lineXTotal; i++) {
+				this.ctx.beginPath();
+				this.ctx.moveTo(0,i*this.grid - 0.5);
+				this.ctx.lineTo(this.canvasWidth,i*this.grid - 0.5);
+				this.ctx.strokeStyle = '#999';
+				this.ctx.stroke();
+			}
+			//set vertical grid line -----------------------------------------------------
+			for (var i = 0; i < this.lineYTotal; i++) {
+				this.ctx.beginPath();
+				this.ctx.moveTo(i*this.grid - 0.5,0);
+				this.ctx.lineTo(i*this.grid - 0.5,this.canvasHeight);
+				this.ctx.strokeStyle = '#999';
+				this.ctx.stroke();
+			}
+		}
+		LineChart.prototype.drawAxis = function(){
+			//axis X-----------------------------------------------------------------------
+			this.ctx.beginPath();
+			this.ctx.moveTo(this.axisSpace,this.canvasHeight - this.axisSpace);
+			this.ctx.lineTo(this.canvasWidth - this.axisSpace,this.canvasHeight - this.axisSpace);
+			this.ctx.lineTo(this.canvasWidth - this.axisSpace - this.axisArrow,this.canvasHeight - this.axisSpace + this.axisArrow/2);
+			this.ctx.lineTo(this.canvasWidth - this.axisSpace - this.axisArrow,this.canvasHeight - this.axisSpace - this.axisArrow/2);
+			this.ctx.lineTo(this.canvasWidth - this.axisSpace,this.canvasHeight - this.axisSpace);
+			this.ctx.strokeStyle = '#000';
+			this.ctx.stroke();
+			this.ctx.fill();
+			//axis Y------------------------------------------------------------------------
+			this.ctx.beginPath();
+			this.ctx.moveTo(this.axisSpace,this.canvasHeight - this.axisSpace);
+			this.ctx.lineTo(this.axisSpace,this.axisSpace);
+			this.ctx.lineTo(this.axisSpace + this.axisArrow/2,this.axisSpace + this.axisArrow);
+			this.ctx.lineTo(this.axisSpace - this.axisArrow/2,this.axisSpace + this.axisArrow);
+			this.ctx.lineTo(this.axisSpace,this.axisSpace);
+			this.ctx.strokeStyle = '#000';
+			this.ctx.stroke();
+			this.ctx.fill();
+		}
+		LineChart.prototype.drawDots = function(data){
+			//draw dot on chart---------------------------------------------
+			var that = this;
+			var lastCanvasX = 0;
+			var lastCanvasY = 0;
+
+			data.forEach(function(item,i){
+				var canvasX = that.orginX + item.x;
+				var canvasY = that.orginY - item.y;
+				that.ctx.beginPath();
+				that.ctx.moveTo(canvasX + that.dotSize/2,canvasY - that.dotSize/2);
+				that.ctx.lineTo(canvasX + that.dotSize/2,canvasY + that.dotSize/2);
+				that.ctx.lineTo(canvasX - that.dotSize/2,canvasY + that.dotSize/2);
+				that.ctx.lineTo(canvasX - that.dotSize/2,canvasY - that.dotSize/2);
+				that.ctx.closePath();
+				that.ctx.fill();
+				if(i == 0){
+					that.ctx.beginPath();
+					that.ctx.moveTo(that.orginX,that.orginY);
+					that.ctx.lineTo(canvasX,canvasY);
+					that.ctx.stroke();
+				} else {
+					that.ctx.beginPath();
+					that.ctx.moveTo(lastCanvasX,lastCanvasY);
+					that.ctx.lineTo(canvasX,canvasY);
+					that.ctx.stroke();
+				}
+				lastCanvasX = canvasX;
+				lastCanvasY = canvasY;
+			});
+		}
+
+		var data = [
+			{
+				x:30,
+				y:60
+			},
+			{
+				x:40,
+				y:90
+			},
+			{
+				x:120,
+				y:120
+			},
+			{
+				x:150,
+				y:90
+			},
+			{
+				x:200,
+				y:220
+			},
+			{
+				x:260,
+				y:90
+			},
+			{
+				x:350,
+				y:190
+			},
+			{
+				x:390,
+				y:220
+			},
+			{
+				x:420,
+				y:160
+			}
+		];
+		var myChart= new LineChart();
+		myChart.init(data);
+
+
+		// var myCanvas = document.querySelector('canvas');
+		// var ctx = myCanvas.getContext('2d');
+		// var canvasHeight = ctx.canvas.height;
+		// var canvasWidth = ctx.canvas.width;
+		// var grid = 10;
+		// var lineXTotal = Math.floor(canvasHeight/grid);
+		// var lineYTotal = Math.floor(canvasWidth/grid);
+		// //set grid-------------------------------------------
+		// //set horizontal line -----------------------------------------------
+		// for (var i = 0; i < lineXTotal; i++) {
+		// 	ctx.beginPath();
+		// 	ctx.moveTo(0,i*grid - 0.5);
+		// 	ctx.lineTo(canvasWidth,i*grid - 0.5);
+		// 	ctx.strokeStyle = '#999';
+		// 	ctx.stroke();
+		// }
+		// //set vertical line----------------------------------------------
+		// for (var i = 0; i < lineYTotal; i++) {
+		// 	ctx.beginPath();
+		// 	ctx.moveTo(i*grid - 0.5,0);
+		// 	ctx.lineTo(i*grid - 0.5,canvasHeight);
+		// 	ctx.strokeStyle = '#999';
+		// 	ctx.stroke();
+		// }
+
+		// //set axis-----------------------------------------
+
+		// var space = 20;
+		// var arrow = 10;
+		// // X axis------------------------------------------
+		// ctx.beginPath();
+		// ctx.moveTo(space,canvasHeight - space);
+		// ctx.lineTo(canvasWidth - space,canvasHeight - space);
+		// ctx.lineTo(canvasWidth - space - arrow,canvasHeight - space + arrow/2);
+		// ctx.lineTo(canvasWidth - space - arrow,canvasHeight - space - arrow/2);
+		// ctx.lineTo(canvasWidth - space,canvasHeight - space);
+		// ctx.strokeStyle = '#000';
+		// ctx.stroke();
+		// ctx.fill();
+		// //Y axis--------------------------------------------
+		// ctx.beginPath();
+		// ctx.moveTo(space,canvasHeight - space);
+		// ctx.lineTo(space,space);
+		// ctx.lineTo(space - arrow/2,space + arrow);
+		// ctx.lineTo(space + arrow/2,space + arrow);
+		// ctx.lineTo(space,space);
+		// ctx.strokeStyle = '#000';
+		// ctx.stroke();
+		// ctx.fill();
+
+		// //set dot----------------------------------------
+		// var dotCoordinate = {
+		// 	x:100,
+		// 	y:100
+		// };
+		// var dotSize = 6;
+
+		// ctx.beginPath();
+		// ctx.moveTo(dotCoordinate.x - dotSize/2,dotCoordinate.y - dotSize/2);
+		// ctx.lineTo(dotCoordinate.x + dotSize/2,dotCoordinate.y - dotSize/2);
+		// ctx.lineTo(dotCoordinate.x + dotSize/2,dotCoordinate.y + dotSize/2);
+		// ctx.lineTo(dotCoordinate.x - dotSize/2,dotCoordinate.y + dotSize/2);
+		// ctx.closePath();
+		// ctx.fill();
+		
+
+	</script>
+</body>
+</html>

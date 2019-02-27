@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas piechart</title>
+	<style type="text/css">
+		canvas {
+			border: 1px solid #eee;
+			display: block;
+			margin: 100px auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="400"></canvas>
+	<script>
+		var PieChart = function(ctx){
+			this.ctx = ctx || document.querySelector('canvas').getContext('2d');
+			this.canvasWidth = this.ctx.canvas.width;
+			this.canvasHeight = this.ctx.canvas.height;
+			this.orginX = this.canvasWidth/2 + 30;
+			this.orginY = this.canvasHeight/2;
+			this.radius = 150;
+			this.totalRad = Math.PI*2;
+			this.extendLine = 40;
+			this.hypotenuse = this.radius + this.extendLine;
+			this.descSpace = 15;
+			this.descHeight = 15;
+			this.descWidth = 30;
+		};
+		PieChart.prototype.init = function(data){
+			this.drawPie(data);
+		};
+		PieChart.prototype.drawPie = function(data){
+
+			var that = this;
+			var startRad = 0;
+			this.radList = this.transformToAngle(data);
+			
+			this.radList.forEach(function(item,i){
+				var endRad = startRad + item.rad;
+				that.ctx.beginPath();
+				that.ctx.moveTo(that.orginX,that.orginY);
+				that.ctx.arc(that.orginX,that.orginY,that.radius,startRad,endRad);
+				that.ctx.fillStyle = that.getRandomColor();
+				that.ctx.fill();
+				that.drawTitle(startRad,item.rad,item.age);
+				that.drawDesc(item.percent,i);	
+				startRad = endRad;
+			})			
+		};
+		PieChart.prototype.drawTitle = function(startRad,rad,title){
+
+			var lineX = this.hypotenuse*Math.cos(startRad + rad/2);
+			var lineY = this.hypotenuse*Math.sin(startRad + rad/2);
+			this.ctx.font = '16px Arial';
+			var titleWidth = this.ctx.measureText(title).width;
+
+			this.ctx.beginPath();
+			this.ctx.moveTo(this.orginX,this.orginY);
+			this.ctx.lineTo(lineX + this.orginX,lineY + this.orginY);
+			this.ctx.strokeStyle = this.ctx.fillStyle;
+			if(lineX +this.orginX > this.orginX){
+				this.ctx.lineTo(lineX + this.orginX + titleWidth,lineY + this.orginY);
+				this.ctx.textAlign = 'left';
+			} else {
+				this.ctx.lineTo(lineX + this.orginX - titleWidth,lineY + this.orginY);
+				this.ctx.textAlign = 'right';
+			}
+			this.ctx.stroke();
+			this.ctx.textBaseline = 'bottom';
+			this.ctx.fillText(title,lineX + this.orginX,lineY + this.orginY);
+			
+		};
+		PieChart.prototype.drawDesc = function(percent,index){
+			
+			this.ctx.fillRect(this.descSpace,this.descSpace+index*(this.descSpace + this.descHeight),this.descWidth,this.descHeight);
+			// this.ctx.beginPath();
+			this.ctx.textAlign = 'left';
+			this.ctx.textBaseline = 'top';
+			var per = (percent*100).toFixed(2) + '%';
+			this.ctx.fillStyle = '#000';
+			this.ctx.fillText(per,this.descSpace + this.descWidth +10,this.descSpace+index*(this.descSpace + this.descHeight));
+		};
+		PieChart.prototype.transformToAngle = function(data){
+			var total = 0;
+			var that = this;
+			data.forEach(function(item,i){
+				total += item.num;
+			})
+			data.forEach(function(item,i){
+				item.rad = item.num/total*that.totalRad;
+				item.percent = item.num/total;
+			})
+			return data;
+		};
+		PieChart.prototype.getRandomColor = function(){
+			var r = Math.floor(Math.random()*256);
+			var g = Math.floor(Math.random()*256);
+			var b = Math.floor(Math.random()*256);
+			return 'rgb('+r+','+g+','+b+')';
+		};
+
+		var data = [
+			{
+				age:'Age:15-20',
+				num:12
+			},
+			{
+				age:'Age:20-25',
+				num:22
+			},
+			{
+				age:'Age:25-30',
+				num:10
+			},
+			{
+				age:'Age:30-35',
+				num:8
+			},
+			{
+				age:'Age:35-40',
+				num:4
+			},
+			{
+				age:'Age:40-50',
+				num:2
+			}
+		];
+		var myPieChart = new PieChart();
+		myPieChart.init(data);
+	</script>
+</body>
+</html>

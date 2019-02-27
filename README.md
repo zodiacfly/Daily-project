@@ -31,3 +31,4 @@ let's see how will go!
 <h3><a href="https://zodiacfly.github.io/Daily-project/wheelScroll/index.html">25.wheel scroll event</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/canvasPractice/index.html">26.canvas-lineChart-OOP</a></h3>
 <h3><a href="https://zodiacfly.github.io/Daily-project/canvasPieChart/index.html">27.canvas-pieChart-OOP</a></h3>
+<h3><a href="https://zodiacfly.github.io/Daily-project/canvasAmination/index.html">28.canvas-amination-OOP</a></h3>

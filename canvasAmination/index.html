@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cancas amination</title>
+	<style type="text/css">
+		canvas {
+			border: 1px solid #000;
+			display: block;
+			margin: 20px auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="800" height="500"></canvas>
+	<script>
+		var walkPerson = function(ctx){
+			this.ctx = ctx || document.querySelector('canvas').getContext('2d');
+			this.src = 'images/01.png';
+			this.canvasWidth = this.ctx.canvas.width;
+			this.canvasHeight = this.ctx.canvas.height;
+			this.stepSize = 10;
+			this.direction = 0;
+			this.stepX = 0;
+			this.stepY = 0;
+			this.index = 0;
+			this.init();
+			
+		};
+		walkPerson.prototype.init = function(){
+			var that = this;
+			this.imageLoad(function(image){
+				that.imageWidth = image.width/4;
+				that.imageHeight = image.height/4;
+				that.orginX = that.canvasWidth/2 - that.imageWidth/2;
+				that.orginY = that.canvasHeight/2 - that.imageHeight/2;
+				that.ctx.drawImage(
+					image,
+					0,0,
+					that.imageWidth,that.imageHeight,
+					that.orginX,that.orginY,
+					that.imageWidth,that.imageHeight
+					);
+				document.addEventListener('keydown',function(e){
+					e = e || event;
+					if(e.keyCode == 40){
+						//down-------------------------------------------
+						that.direction = 0;
+						that.stepY++;
+						that.drawImage(image);
+					} else if(e.keyCode == 37){
+						//left-------------------------------------------
+						that.direction = 1;
+						that.stepX--;
+						that.drawImage(image);
+					} else if(e.keyCode == 39){
+						//right-------------------------------------------
+						that.direction = 2;
+						that.stepX++;
+						that.drawImage(image);
+					} else if(e.keyCode == 38){
+						//up---------------------------------------------
+						that.direction = 3;
+						that.stepY--;
+						that.drawImage(image);
+					}			
+				})
+			})
+		};
+		walkPerson.prototype.imageLoad = function(callback){
+			var image = new Image();
+			image.onload = function(){
+				callback && callback(image);
+			};
+			image.src = this.src;
+		};
+		walkPerson.prototype.drawImage= function(image){
+			this.index++;
+			var rangeX = this.orginX + this.stepX*this.stepSize;
+			rangeX = rangeX <= 0 ? 0 : rangeX;
+			rangeX = rangeX >= this.canvasWidth - this.imageWidth ? this.canvasWidth - this.imageWidth : rangeX;
+			var rangeY = this.orginY + this.stepY*this.stepSize;
+			rangeY = rangeY <= 0 ? 0 : rangeY;
+			rangeY = rangeY >= this.canvasHeight - this.imageHeight ? this.canvasHeight - this.imageHeight : rangeY;
+	
+			this.ctx.clearRect(0,0,this.canvasWidth,this.canvasHeight);
+			this.ctx.drawImage(
+				image,
+				this.index*this.imageWidth,this.direction*this.imageHeight,
+				this.imageWidth,this.imageHeight,
+				rangeX,rangeY,
+				this.imageWidth,this.imageHeight
+				);	
+			if(this.index >= 3){
+				this.index = 0;
+			}
+		};
+
+		var myPerson = new walkPerson();
+
+	</script>
+</body>
+</html>

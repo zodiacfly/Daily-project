@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas bubble</title>
+	<style type="text/css">
+		canvas {
+			display: block;
+			margin: 100px auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="400"></canvas>
+	<script>
+		var Bubble = function(ctx){
+			this.ctx = ctx || document.querySelector('canvas').getContext('2d');
+			this.canvasHeight = this.ctx.canvas.height;
+			this.canvasWidth = this.ctx.canvas.width;
+			this.data = [];
+			this.init();
+		};
+		Bubble.prototype.init = function(){	
+			this.getData();
+			this.drawBubble();
+		};
+		Bubble.prototype.drawBubble = function(){
+			var that = this;
+			setInterval(function(){
+				
+				that.ctx.clearRect(0,0,that.canvasWidth,that.canvasHeight);
+				that.data.forEach(function(item,i){
+					item.radius++;
+					if(item.a <= 0){
+						that.data.splice(i,1);
+					}
+					item.a -= 0.01;
+					that.ctx.beginPath();
+					that.ctx.arc(item.x,item.y,item.radius,0,Math.PI*2);
+					that.ctx.fillStyle = 'rgba('+item.r+','+item.g+','+item.b+','+item.a+')';
+					that.ctx.fill();
+				})
+				
+			},10)
+		};
+		Bubble.prototype.getData = function(){
+			var that = this;
+			setInterval(function(){
+				var x = Math.random()*that.canvasWidth;
+				var y = Math.random()*that.canvasHeight;
+				var r = Math.floor(Math.random()*256);
+				var g = Math.floor(Math.random()*256);
+				var b = Math.floor(Math.random()*256);
+				var a = 1;
+				var radius = 10;
+				that.data.push({
+					x:x,
+					y:y,
+					r:r,
+					g:g,
+					b:b,
+					a:a,
+					radius:radius
+				})
+			},100)
+			
+		};
+		
+		var myBubble = new Bubble();
+	</script>
+</body>
+</html>

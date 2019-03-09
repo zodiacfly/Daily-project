@@ -92,6 +92,13 @@
 				item.percent = item.num/total;
 			})
 			return data;
+			//use arr.map() method is another way to make same result----------------------
+			// var newData = data.map(function(item,i){
+			// 	item.rad = item.num/total*that.totalRad;
+			// 	item.percent = item.num/total;
+			// 	return item;
+			// })
+			// return newData;
 		};
 		PieChart.prototype.getRandomColor = function(){
 			var r = Math.floor(Math.random()*256);

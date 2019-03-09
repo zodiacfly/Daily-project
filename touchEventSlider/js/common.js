@@ -139,6 +139,6 @@ function setSlider(){
 		//unlock the touchmove event once transition finish
 		setTimeout(function(){
 			flag = true;
-		},500);		
+		},8000);		
 	})
 }

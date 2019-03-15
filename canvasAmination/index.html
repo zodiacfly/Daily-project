@@ -22,6 +22,8 @@
 			this.direction = 0;
 			this.stepX = 0;
 			this.stepY = 0;
+			this.rangeX = 0;
+			this.rangeY = 0;
 			this.index = 0;
 			this.init();
 			
@@ -44,21 +46,33 @@
 					e = e || event;
 					if(e.keyCode == 40){
 						//down-------------------------------------------
+						if(that.rangeY >= that.canvasHeight - that.imageHeight){
+							that.stepY--;//step-- to make sure it can only move inside canvas box
+						}
 						that.direction = 0;
 						that.stepY++;
 						that.drawImage(image);
 					} else if(e.keyCode == 37){
 						//left-------------------------------------------
+						if(that.rangeX <= 0){
+							that.stepX++;// same reason as above
+						}
 						that.direction = 1;
 						that.stepX--;
 						that.drawImage(image);
 					} else if(e.keyCode == 39){
 						//right-------------------------------------------
+						if(that.rangeX >= that.canvasWidth - that.imageWidth){
+							that.stepX--;// same reason as above
+						}
 						that.direction = 2;
 						that.stepX++;
 						that.drawImage(image);
 					} else if(e.keyCode == 38){
 						//up---------------------------------------------
+						if(that.rangeY <= 0){
+							that.stepY++;// same reason as above
+						}
 						that.direction = 3;
 						that.stepY--;
 						that.drawImage(image);
@@ -74,20 +88,17 @@
 			image.src = this.src;
 		};
 		walkPerson.prototype.drawImage= function(image){
+
 			this.index++;
-			var rangeX = this.orginX + this.stepX*this.stepSize;
-			rangeX = rangeX <= 0 ? 0 : rangeX;
-			rangeX = rangeX >= this.canvasWidth - this.imageWidth ? this.canvasWidth - this.imageWidth : rangeX;
-			var rangeY = this.orginY + this.stepY*this.stepSize;
-			rangeY = rangeY <= 0 ? 0 : rangeY;
-			rangeY = rangeY >= this.canvasHeight - this.imageHeight ? this.canvasHeight - this.imageHeight : rangeY;
-	
+			this.rangeX = this.orginX + this.stepX*this.stepSize;
+			this.rangeY = this.orginY + this.stepY*this.stepSize;
+			
 			this.ctx.clearRect(0,0,this.canvasWidth,this.canvasHeight);
 			this.ctx.drawImage(
 				image,
 				this.index*this.imageWidth,this.direction*this.imageHeight,
 				this.imageWidth,this.imageHeight,
-				rangeX,rangeY,
+				this.rangeX,this.rangeY,
 				this.imageWidth,this.imageHeight
 				);	
 			if(this.index >= 3){
